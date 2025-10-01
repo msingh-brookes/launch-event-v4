@@ -1,7 +1,10 @@
 import os
 import psycopg2
 from print_db import print_table
+from dotenv import load_dotenv
 
+load_dotenv()
+DATABASE_URL = os.getenv('DATABASE_URL')
 def init_db():
     db_url = os.environ.get("DATABASE_URL")
     if not db_url:
@@ -15,19 +18,19 @@ def init_db():
     cur = conn.cursor()
 
     # Drop and recreate tables (safe for dev)
-    cur.execute("""
-        DROP TABLE IF EXISTS poll_votes;
-        DROP TABLE IF EXISTS interests;
-        DROP TABLE IF EXISTS questions;
-        DROP TABLE IF EXISTS users;
-        """)
+    #cur.execute("""
+    #    DROP TABLE IF EXISTS poll_votes;
+    ##    DROP TABLE IF EXISTS interests;
+    #    DROP TABLE IF EXISTS questions;
+    #    DROP TABLE IF EXISTS users;
+    #    """)
 
     # Create users table
     cur.execute("""
     CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         first_name TEXT NOT NULL,
-        last_name TEXT NOT NULL UNIQUE COLLATE NOCASE,
+        last_name TEXT NOT NULL UNIQUE,
         organisation TEXT NOT NULL,
         password TEXT,         -- still kept for admins
         is_admin BOOLEAN DEFAULT FALSE,
@@ -68,19 +71,19 @@ def init_db():
     );
     """)
 
-
-
     # Seed data
-    cur.execute("INSERT OR IGNORE INTO users (first_name, last_name, organisation, password, is_admin) VALUES (?, ?, ?, ?, ?)",
-                ("admin","","", "DPRIN1234", 1))
+    cur.execute("""
+    INSERT INTO users (first_name, last_name, organisation, password, is_admin)
+        VALUES (%s, %s, %s, %s, %s)
+        ON CONFLICT (last_name) DO NOTHING;
+    """,
+                ("admin","","", "DPRIN1234", True))
     #cur.execute("INSERT OR IGNORE INTO users (username, password, is_admin) VALUES (?, ?, ?)", ("alice", "1234", 0))
     #cur.execute("INSERT OR IGNORE INTO users (username, password, is_admin) VALUES (?, ?, ?)",("bob", "1234", 0))
 
     conn.commit()
     cur.close()
     conn.close()
-    print_table(conn, "poll_votes")
-    print_table(conn, "users")
 
 #print("Regular user: alice / 1234")
 #print("Regular user: bob / 1234")
@@ -89,4 +92,5 @@ if __name__ == "__main__":
     init_db()
     print("Database initialized.")
     print("Admin user: admin / DPRIN1234")
+    print_table('users')
 

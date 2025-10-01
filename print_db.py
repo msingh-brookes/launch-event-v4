@@ -1,36 +1,24 @@
-import sqlite3
+import os
+import psycopg2
 
-DB_PATH = "archive/users.db"
+def print_table(table_name):
+    conn = psycopg2.connect(os.environ["DATABASE_URL"])
+    cur = conn.cursor()
+    cur.execute(f"SELECT * FROM {table_name}")
+    rows = cur.fetchall()
+    colnames = [desc[0] for desc in cur.description]
 
-def print_table(conn, table_name):
-    print(f"\n--- {table_name.upper()} ---")
-    try:
-        cur = conn.execute(f"SELECT * FROM {table_name}")
-        rows = cur.fetchall()
-        col_names = [description[0] for description in cur.description]
+    print(f"\n--- {table_name} ---")
+    print(colnames)
+    for row in rows:
+        print(row)
 
-        if not rows:
-            print("(no rows)")
-            return
-
-        # Print header
-        print(" | ".join(col_names))
-        print("-" * 50)
-
-        # Print rows
-        for row in rows:
-            print(" | ".join(str(value) if value is not None else "" for value in row))
-
-    except sqlite3.OperationalError as e:
-        print(f"Table {table_name} does not exist. ({e})")
-
-def main():
-    conn = sqlite3.connect(DB_PATH)
-
-    for table in ["users", "questions", "poll_votes", "interests"]:
-        print_table(conn, table)
-
+    cur.close()
     conn.close()
 
 if __name__ == "__main__":
-    main()
+    for table in ["users", "poll_votes", "interests", "questions"]:
+        try:
+            print_table(table)
+        except Exception as e:
+            print(f"Error printing {table}: {e}")
