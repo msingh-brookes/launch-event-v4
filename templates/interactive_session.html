@@ -4,22 +4,77 @@
 <h2 class="mb-4">Interactive Session</h2>
 
 <!-- Poll Section -->
+<!-- Poll Section -->
 <div class="card mb-4">
   <div class="card-body">
     <h4>Vote in the Poll (Choose up to 2)</h4>
-    <form method="POST">
-      <div class="form-check">
-        {% for option in ["Global vs Local Realities", "Dealing with the Whack-a-Mole Problem", "Establishing Responsibility", "Data-Driven Compliance", "Fraud", "Product Authenticity"] %}
-          <input class="form-check-input" type="checkbox" name="options" value="{{ option }}"
-                 id="{{ option }}" {% if option in my_votes %}checked{% endif %}>
-          <label class="form-check-label" for="{{ option }}">{{ option }}</label><br>
-        {% endfor %}
+    <form method="POST" onsubmit="setTimeout(updatePoll,300)">
+      <div class="form-check mb-3">
+        <!-- Option 1 -->
+        <input class="form-check-input" type="checkbox" name="options" value="Global vs Local Realities"
+               id="option1" {% if "Global vs Local Realities" in my_votes %}checked{% endif %}>
+        <label class="form-check-label fw-bold" for="option1">Global vs Local Realities</label>
+        <ul class="ms-4 text-muted small">
+          <li>In an ever expanding global world, local businesses face competition from overseas organisations</li>
+          <li>Can countries work together to ensure consistency in compliance and its enforcement across borders?</li>
+          <li>What digital tools could help in transparency on an international scale, especially considering language barriers?</li>
+        </ul>
+
+        <!-- Option 2 -->
+        <input class="form-check-input" type="checkbox" name="options" value="Dealing with the Whack-a-Mole Problem"
+               id="option2" {% if "Dealing with the Whack-a-Mole Problem" in my_votes %}checked{% endif %}>
+        <label class="form-check-label fw-bold" for="option2">Dealing with the Whack-a-Mole Problem</label>
+        <ul class="ms-4 text-muted small">
+          <li>Non-compliant goods entering the market poses risks to public as well as reputational damage for brands </li>
+          <li>Sellers may struggle with selling their product through traditional channels due to enforcement by regulators, pushing them to sell their products through social media, second hand websites, or newer unregulated online marketplaces</li>
+        </ul>
+
+        <!-- Option 3 -->
+        <input class="form-check-input" type="checkbox" name="options" value="Establishing Responsibility"
+               id="option3" {% if "Establishing Responsibility" in my_votes %}checked{% endif %}>
+        <label class="form-check-label fw-bold" for="option3">Establishing Responsibility</label>
+        <ul class="ms-4 text-muted small">
+          <li>In sprawling supply chains with dozens of handoffs, it’s easy to lose sight of who owns quality at each stage</li>
+          <li>Can digital tools help rebuild trust for consumers after accountability has failed?</li>
+          <li>Regulators may demand one thing, while ethical obligations demand another - how do leaders navigate when legal compliance and moral responsibility pull in different directions?</li>
+        </ul>
+
+        <!-- Option 4 -->
+        <input class="form-check-input" type="checkbox" name="options" value="Data-Driven Compliance"
+               id="option4" {% if "Data-Driven Compliance" in my_votes %}checked{% endif %}>
+        <label class="form-check-label fw-bold" for="option4">Data-Driven Compliance</label>
+        <ul class="ms-4 text-muted small">
+          <li>Are business and regulators drowning in data but starving for insight?</li>
+          <li>How far will regulators trust “machine-made” compliance decisions?</li>
+          <li>Where does automation help, and where does it create blind spots?</li>
+        </ul>
+
+        <!-- Option 5 -->
+        <input class="form-check-input" type="checkbox" name="options" value="Fraud"
+               id="option5" {% if "Fraud" in my_votes %}checked{% endif %}>
+        <label class="form-check-label fw-bold" for="option5">Fraud</label>
+        <ul class="ms-4 text-muted small">
+          <li>How do you safeguard customers when fraudsters seem to always stay one step ahead?</li>
+          <li>What tools exist to verify specs across sprawling supply chains?</li>
+        </ul>
+
+        <!-- Option 6 -->
+        <input class="form-check-input" type="checkbox" name="options" value="Product Authenticity"
+               id="option6" {% if "Product Authenticity" in my_votes %}checked{% endif %}>
+        <label class="form-check-label fw-bold" for="option6">Product Authenticity</label>
+        <ul class="ms-4 text-muted small">
+          <li>How can digital tools help supply chains guarantee authenticity from factory to consumer?</li>
+          <li>How can we track product authenticity when parts and materials cross borders?</li>
+          <li>What potential solutions can streamline the purchasing process to ensure efficiency while maintaining a choice of products?</li>
+        </ul>
       </div>
+
       <button type="submit" class="btn btn-primary mt-3">Submit Vote</button>
       <button type="submit" name="reset" value="1" class="btn btn-secondary mt-3">Reset Choices</button>
     </form>
   </div>
 </div>
+
 <div class="card mt-4">
   <div class="card-body">
     <h4>Live Poll Results</h4>
@@ -60,7 +115,6 @@ async function updatePoll() {
     pollChart.data.datasets[0].data = pollChart.data.labels.map(opt => data[opt] || 0);
     pollChart.update();
 }
-setInterval(updatePoll, 5000);
 updatePoll();
 </script>
 
@@ -185,24 +239,15 @@ loadInteractiveSessionData();
 <!-- Exhibit Info Section -->
 <div class="card">
   <div class="card-body">
-    <h4>Exhibit Stalls</h4>
-    <h5>Stall A</h5>
-    <ul>
-      <li>Point 1 about Stall A</li>
-      <li>Point 2 about Stall A</li>
-    </ul>
-
-    <h5>Stall B</h5>
-    <ul>
-      <li>Point 1 about Stall B</li>
-      <li>Point 2 about Stall B</li>
-    </ul>
-
-    <h5>Stall C</h5>
-    <ul>
-      <li>Point 1 about Stall C</li>
-      <li>Point 2 about Stall C</li>
-    </ul>
+    <h4>Stalls and Posters</h4>
+    <h5>Around the room, we have a series of stalls and posters, detailing work conducted across the network. </h5>
+    <h6>You'll find information on the following topics:</h6>
+        <ul>
+            <h6><li>Challenges in the construction industry</li>
+            <li>End of life of products and circular economy</li>
+            <li>Non-compliance challenges facing the safety industry</li>
+            <li>Vape non-compliance and enforcement</li></h6>
+        </ul>
   </div>
 </div>
 {% endblock %}

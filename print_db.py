@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_PATH = "users.db"
+DB_PATH = "archive/users.db"
 
 def print_table(conn, table_name):
     print(f"\n--- {table_name.upper()} ---")

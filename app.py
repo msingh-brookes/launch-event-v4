@@ -4,6 +4,9 @@ from collections import Counter
 import sqlite3
 from wordcloud import WordCloud
 from print_db import main
+import os
+import psycopg2
+import psycopg2.extras
 import time
 
 app = Flask(__name__)
@@ -11,15 +14,32 @@ app.secret_key = 'your_secret_key'
 DATABASE = 'users.db'
 
 #Secret word to be used at the venue
-EVENT_PASSPHRASE = "123"
+EVENT_PASSPHRASE = "DPRIN"
 
-# Database helper
+"""Database helper"""
 def get_db():
-    conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row
-    conn.row_factory = sqlite3.Row
-    return conn
+    if "db" not in g:
+        db_url = os.environ.get("DATABASE_URL")
 
+        if not db_url:
+            raise RuntimeError("DATABASE_URL is not set. Did you configure your environment variables?")
+
+        # Ensure psycopg2 understands the SSL requirement (Render enforces it)
+        if db_url.startswith("postgres://"):
+            db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+        g.db = psycopg2.connect(
+            db_url,
+            cursor_factory=psycopg2.extras.RealDictCursor,
+            sslmode="require"  # Render requires SSL
+        )
+    return g.db
+
+"""Database helper function: closes DB"""
+def close_db(e=None):
+    db = g.pop("db", None)
+    if db is not None:
+        db.close()
 
 @app.before_request
 def load_logged_in_user():

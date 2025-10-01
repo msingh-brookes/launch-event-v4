@@ -1,37 +1,145 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Event Agenda</h3>
-<ul class="list-group">
+        <h3>Event Agenda</h3>
     <li class="list-group-item"><strong>09:45</strong> - Arrival and Refreshments</li>
     <li class="list-group-item"><strong>10:15</strong> - Welcome and Introduction - Methuselah Singh, Oxford Brookes University</li>
-    <li class="list-group-item"><strong>10:25</strong> - DPRIN: Overview - Dr Paul Jackson, Oxford Brookes University</li>
     <li class="list-group-item">
+            <div class="d-flex align-items-start">
+                <!-- Speaker Headshot -->
+                <div>
+                    <strong>10:25</strong> - <span class="fw-bold">DPRIN: Spotlight on the Situation and Overview of Issues</span><br>
+                    <span class="fw-semibold">Dr Paul Jackson</span>, Oxford Brookes University<br>
+                    <img src="{{ url_for('static', filename='/Paul_Headshot.jpg') }}"
+                    alt="Panelist Headshot"
+                    class="rounded-circle me-3"
+                    style="width:120px; height:120px; object-fit:cover;">
+                </div>
+
+            <!-- Text content -->
+
+        </div>
         <div class="d-flex align-items-start">
-            <!-- Speaker Headshot -->
-            <div>
-                <strong>10:35</strong> - <span class="fw-bold">InnovateUK and UKRI - Nick Spickernel, Innovate UK UKRI</span><br>
-                <span class="fw-semibold">Nick Spickernel</span>, InnovateUK<br>
-                <img src="{{ url_for('static', filename='/nick-s headshot.jpg') }}"
-                     alt="Panelist Headshot"
-                     class="rounded-circle me-3"
-                     style="width:120px; height:120px; object-fit:cover;">
-                <small class="text-muted">
-                    bio ...
-                </small>
-            </div>
+                <!-- Speaker Headshot -->
+                <div>
+                    <strong>10:35</strong> - <span class="fw-bold">Innovate UK: Regulatory Science for Innovation</span><br>
+                    <span class="fw-semibold">Nick Spickernell</span>, Innovate UK<br>
+                    <img src="{{ url_for('static', filename='/nick-s headshot.jpg') }}"
+                    alt="Panelist Headshot"
+                    class="rounded-circle me-3"
+                    style="width:120px; height:120px; object-fit:cover;">
+                </div>
+        </div>
+        <div class="d-flex align-items-start">
+                <!-- Speaker Headshot -->
+                <div>
+                    <strong>10:50</strong> - <span class="fw-bold">CTSI and Product Compliance Challenges</span><br>
+                    <span class="fw-semibold">Philip Owen</span>, CTSI<br>
+                    <img src="{{ url_for('static', filename='/PO head shot.png') }}"
+                    alt="Panelist Headshot"
+                    class="rounded-circle me-3"
+                    style="width:120px; height:120px; object-fit:cover;">
+                </div>
+        </div>
+        <div class="d-flex align-items-start">
+                <!-- Speaker Headshot -->
+                <div>
+                    <strong>11:05</strong> - <span class="fw-bold">The Online Marketplaces Innovation Framework</span><br>
+                    <span class="fw-semibold">Tyler Walsh</span>, OPSS<br>
+                    <img src="{{ url_for('static', filename='/tyler-w headshot.jpg') }}"
+                    alt="Panelist Headshot"
+                    class="rounded-circle me-3"
+                    style="width:120px; height:120px; object-fit:cover;">
+                </div>
 
             <!-- Text content -->
 
         </div>
     </li>
-    <li class="list-group-item"><strong>10:50</strong> - A DPRIN Case Study: CTSI and the Challenges and Opportunities from the Trading Standards Perspective - Phil Owen, CTSI </li>
-    <li class="list-group-item"><strong>11:05</strong> - OPSS - TBC</li>
     <li class="list-group-item"><strong>11:20</strong> - Refreshments</li>
-    <li class="list-group-item"><strong>11:45</strong> - DPRIN Launch Presentation</li>
+    <li class="list-group-item">
+        <div class="d-flex align-items-start">
+                <!-- Speaker Headshot -->
+                <div>
+                    <strong>11:45</strong> - <span class="fw-bold">DPRIN Launch Presentation</span><br>
+                    <span class="fw-semibold">Dr Kevin Maynard</span>, Oxford Brookes University<br>
+                    <img src="{{ url_for('static', filename='/kevin headshot.jpg') }}"
+                    alt="Panelist Headshot"
+                    class="rounded-circle me-3"
+                    style="width:120px; height:120px; object-fit:cover;">
+                </div>
+
+            <!-- Text content -->
+
+        </div>
     <li class="list-group-item"><strong>12:00</strong> - Interactive Session</li>
     <li class="list-group-item"><strong>12:30</strong> - Networking Lunch</li>
-    <li class="list-group-item"><strong>13:15</strong> - Panel Discussion and Q&A Session</li>
-    <li class="list-group-item"><strong>14:15</strong> - DPRIN Future and Closing Remarks</li>
+    <li class="list-group-item">
+        <strong>13:15</strong> -
+        <span class="fw-bold">Panel Discussion and Q&A Session</span>
+
+        <!-- Panelists Row -->
+        <div class="d-flex flex-wrap mt-3">
+        <!-- Panelist 1 -->
+        <div class="text-center me-4">
+          <span class="fw-semibold d-block">Moderator: Prof Magda Osman</span>
+          <img src="{{ url_for('static', filename='magda-o headshot.jpg') }}"
+               alt="Panelist Headshot"
+               class="rounded-circle"
+               style="width:120px; height:120px; object-fit:cover;">
+          <div class="small text-muted">University of Cambridge</div>
+        </div>
+
+        <!-- Panelist 2 -->
+        <div class="text-center me-4">
+          <span class="fw-semibold d-block">May Pan</span>
+          <img src="{{ url_for('static', filename='may headshot.png') }}"
+               alt="Panelist Headshot"
+               class="rounded-circle"
+               style="width:120px; height:120px; object-fit:cover;">
+          <div class="small text-muted">Haypp Group</div>
+        </div>
+
+        <!-- Panelist 3 -->
+        <div class="text-center me-4">
+          <span class="fw-semibold d-block">Stephen Brown</span>
+          <img src="{{ url_for('static', filename='stephen headshot.jpg') }}"
+               alt="Panelist Headshot"
+               class="rounded-circle"
+               style="width:120px; height:120px; object-fit:cover;">
+          <div class="small text-muted">E-Com Regs Simplified Ltd</div>
+        </div>
+        <!-- Panelist 4 -->
+        <div class="text-center me-4">
+          <span class="fw-semibold d-block">Alan Murray</span>
+          <img src="{{ url_for('static', filename='alan headshot.jpg') }}"
+               alt="Panelist Headshot"
+               class="rounded-circle"
+               style="width:120px; height:120px; object-fit:cover;">
+          <div class="small text-muted">BSIF</div>
+        </div>
+                <!-- Panelist 5 -->
+        <div class="text-center me-4">
+          <span class="fw-semibold d-block">Dr Sajid Siraj</span>
+          <img src="{{ url_for('static', filename='sajid headshot.jpg') }}"
+               alt="Panelist Headshot"
+               class="rounded-circle"
+               style="width:120px; height:120px; object-fit:cover;">
+          <div class="small text-muted">University of Leeds</div>
+        </div>
+        </div>
+
+    <li class="list-group-item">
+        <div class="d-flex align-items-start">
+                <!-- Speaker Headshot -->
+                <div>
+                    <strong>14:15</strong> - <span class="fw-bold">DPRIN Future and Closing Remarks</span><br>
+                    <span class="fw-semibold">Dr Paul Jackson</span>, Oxford Brookes University<br>
+                    <img src="{{ url_for('static', filename='/Paul_Headshot.jpg') }}"
+                    alt="Panelist Headshot"
+                    class="rounded-circle me-3"
+                    style="width:120px; height:120px; object-fit:cover;">
+                </div>
+        </div>
     <li class="list-group-item"><strong>14:30</strong> - Refreshments and Networking</li>
     <li class="list-group-item"><strong>15:30</strong> - Departure</li>
 </ul>
